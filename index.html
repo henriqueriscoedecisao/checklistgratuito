@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Henrique Queiroz — Inteligência de Risco & Decisão</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 450px;
+            background: #1e293b;
+            border-radius: 24px;
+            padding: 32px 24px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+            border: 1px solid #334155;
+            text-align: center;
+        }
+
+        .profile-badge {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            margin: 0 auto 16px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+        }
+
+        h1 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: #ffffff;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: #10b981;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .bio {
+            font-size: 15px;
+            color: #94a3b8;
+            line-height: 1.5;
+            margin-bottom: 24px;
+            background: #0f172a;
+            padding: 12px;
+            border-radius: 12px;
+            border-left: 4px solid #10b981;
+            text-align: left;
+        }
+
+        .bio-slogan {
+            text-align: center;
+            font-weight: bold;
+            color: #ffffff;
+            margin-top: 8px;
+            display: block;
+        }
+
+        .section-title {
+            font-size: 13px;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-align: left;
+            margin: 20px 0 10px 4px;
+            font-weight: 700;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #293548;
+            color: #f8fafc;
+            text-decoration: none;
+            padding: 16px 20px;
+            border-radius: 14px;
+            margin-bottom: 12px;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.2s ease;
+            border: 1px solid #334155;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #334155;
+            transform: translateY(-2px);
+            border-color: #475569;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            border: none;
+            color: white;
+            margin-top: 10px;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-disabled {
+            background: #141b2b;
+            border-color: #1e293b;
+            color: #475569;
+            cursor: not-allowed;
+        }
+        .btn-disabled:hover {
+            background: #141b2b;
+            transform: none;
+            border-color: #1e293b;
+        }
+
+        .btn-icon {
+            font-size: 18px;
+        }
+
+        .footer {
+            margin-top: 28px;
+            font-size: 11px;
+            color: #475569;
+            letter-spacing: 0.5px;
+        }
+
+        /* Modal/Popup Simples para Interatividade */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(4px);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: #1e293b;
+            padding: 24px;
+            border-radius: 16px;
+            max-width: 400px;
+            width: 100%;
+            border: 1px solid #334155;
+            text-align: left;
+        }
+
+        .modal-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 12px;
+        }
+
+        .modal-body {
+            font-size: 14px;
+            color: #94a3b8;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .modal-close {
+            background: #334155;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            float: right;
+        }
+        
+        .modal-close:hover {
+            background: #475569;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="profile-badge">HQ</div>
+        <h1>Henrique Queiroz</h1>
+        <div class="subtitle">Inteligência de Risco & Decisão</div>
+        
+        <div class="bio">
+            Cenários e números para escolhas conscientes em Salões, Clínicas, Lojas e Food Service.
+            <span class="bio-slogan">Decisão > Achismo 🚀</span>
+        </div>
+
+        <div class="section-title">Solicitar Material Gratuito</div>
+        
+        <a class="btn" onclick="openModal('hamburgueria')">
+            <span>🍔 Checklist Risco: Hamburguerias</span>
+            <span class="btn-icon">➔</span>
+        </a>
+        
+        <a class="btn" onclick="openModal('salao')">
+            <span>💇 Checklist Risco: Salões & Clínicas</span>
+            <span class="btn-icon">➔</span>
+        </a>
+
+        <a class="btn" onclick="openModal('loja')">
+            <span>👗 Checklist Risco: Lojas & Varejo</span>
+            <span class="btn-icon">➔</span>
+        </a>
+
+        <div class="section-title">Contato Direto</div>
+
+        <!-- Altere o número abaixo para o seu WhatsApp real -->
+        <a href="https://wa.me/5534988307190?text=Olá%20Henrique,%20vi%20seu%20perfil%20e%20gostaria%20de%20agendar%20um%20diagnóstico%20de%20risco%20para%20minha%20empresa." target="_blank" class="btn btn-primary">
+            <span>💬 Agendar Diagnóstico Gratuito</span>
+            <span class="btn-icon">➔</span>
+        </a>
+
+        <div class="section-title">Sistemas Dedicados</div>
+        <div class="btn btn-disabled">
+            <span>📊 Portal do Cliente (CRM de Risco)</span>
+            <span class="btn-style" style="font-size: 11px; background: #334155; padding: 2px 8px; border-radius: 6px; color: #94a3b8;">EM BREVE</span>
+        </div>
+
+        <div class="footer">
+            PATROCÍNIO - MG | © 2026 RISCO & DECISÃO
+        </div>
+    </div>
+
+    <!-- Estrutura do Modal Interativo -->
+    <div id="infoModal" class="modal">
+        <div class="modal-content">
+            <div id="modalTitle" class="modal-title">Checklist</div>
+            <div id="modalBody" class="modal-body">Conteúdo</div>
+            <!-- Botão dinâmico que direciona para o seu WhatsApp pedindo o checklist específico -->
+            <a id="modalWaLink" href="#" target="_blank" class="btn btn-primary" style="text-align:center; display:block; margin-bottom:12px;">
+                Receber PDF no WhatsApp
+            </a>
+            <button class="modal-close" onclick="closeModal()">Fechar</button>
+        </div>
+    </div>
+
+    <script>
+        const texts = {
+            hamburgueria: {
+                title: "🍔 Raio-X Invisível: Hamburguerias",
+                body: "Descubra se o fantasma do desperdício, as taxas escondidas do iFood e os erros no cálculo do CMV estão engolindo o lucro do seu balcão.",
+                wa: "Olá Henrique, gostaria de receber o Checklist do Risco Invisível para HAMBURGUERIAS."
+            },
+            salao: {
+                title: "💇 Raio-X Invisível: Salões & Clínicas",
+                body: "Avalie se a armadilha da comissão bruta, o custo invisível por lavatório e o preço da hora parada estão sabotando o caixa do seu salão.",
+                wa: "Olá Henrique, gostaria de receber o Checklist do Risco Invisível para SALÕES DE BELEZA."
+            },
+            loja: {
+                title: "👗 Raio-X Invisível: Lojas & Varejo",
+                body: "Monitore o cemitério das araras (estoque parado), a ilusão das liquidações sem cálculo e os furos causados pelas taxas de antecipação de cartão.",
+                wa: "Olá Henrique, gostaria de receber o Checklist do Risco Invisível para LOJAS DE ROUPA."
+            }
+        };
+
+        function openModal(type) {
+            document.getElementById('modalTitle').innerText = texts[type].title;
+            document.getElementById('modalBody').innerText = texts[type].body;
+            
+            // Altere o número 5534999999999 abaixo para o seu número real de WhatsApp
+            const basePhone = "5534988307190"; 
+            const encodedText = encodeURIComponent(texts[type].wa);
+            document.getElementById('modalWaLink').href = `https://wa.me/${basePhone}?text=${encodedText}`;
+            
+            document.getElementById('infoModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('infoModal').style.display = 'none';
+        }
+
+        // Fechar se clicar fora do conteúdo
+        window.onclick = function(event) {
+            const modal = document.getElementById('infoModal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
