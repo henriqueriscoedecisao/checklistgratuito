@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -135,6 +136,7 @@
             color: #475569;
             cursor: not-allowed;
         }
+
         .btn-disabled:hover {
             background: #141b2b;
             transform: none;
@@ -202,50 +204,51 @@
             font-weight: 600;
             float: right;
         }
-        
+
         .modal-close:hover {
             background: #475569;
         }
     </style>
 </head>
+
 <body>
 
     <div class="container">
         <div class="profile-badge">HQ</div>
         <h1>Henrique Queiroz</h1>
-        <div class="subtitle">Inteligência de Risco & Decisão</div>
-        
+        <div class="subtitle">Gestão & Inteligência de Risco</div>
+
         <div class="bio">
-            Cenários e números para escolhas conscientes em Salões, Clínicas, Lojas e Food Service.
+            Estanco o ralo de dinheiro e organizo a operação do seu comércio local. Gestão 360º: Finanças, Processos, Vendas e RH.
             <span class="bio-slogan">Decisão > Achismo 🚀</span>
         </div>
 
-        <div class="section-title">Solicitar Material Gratuito</div>
-        
+        <div class="section-title">Mapear Risco da Sua Empresa</div>
+
         <a class="btn" onclick="openModal('hamburgueria')">
-            <span>🍔 Checklist Risco: Hamburguerias</span>
+            <span>🍔 Diagnóstico: Hamburguerias e Delivery</span>
             <span class="btn-icon">➔</span>
         </a>
-        
+
         <a class="btn" onclick="openModal('salao')">
-            <span>💇 Checklist Risco: Salões de Beleza</span>
+            <span>💇 Diagnóstico: Salões de Beleza</span>
             <span class="btn-icon">➔</span>
         </a>
-        
+
         <a class="btn" onclick="openModal('clinica')">
-            <span>💉 Checklist Risco: Clínicas de Estética</span>
+            <span>💉 Diagnóstico: Clínicas de Estética</span>
             <span class="btn-icon">➔</span>
         </a>
 
         <a class="btn" onclick="openModal('loja')">
-            <span>👗 Checklist Risco: Lojas & Varejo</span>
+            <span>👗 Diagnóstico: Lojas & Varejo</span>
             <span class="btn-icon">➔</span>
         </a>
 
         <div class="section-title">Contato Direto</div>
 
-        <!-- Altere o número abaixo para o seu WhatsApp real -->
-        <a href="https://wa.me/5534988307190?text=Olá%20Henrique,%20vi%20seu%20perfil%20e%20gostaria%20de%20agendar%20um%20diagnóstico%20de%20risco%20para%20minha%20empresa." target="_blank" class="btn btn-primary">
+        <a href="https://wa.me/5534988307190?text=Olá%20Henrique,%20vi%20seu%20perfil%20e%20gostaria%20de%20agendar%20um%20diagnóstico%20de%20gestão%20completa%20para%20minha%20empresa."
+            target="_blank" class="btn btn-primary">
             <span>💬 Agendar Diagnóstico Gratuito</span>
             <span class="btn-icon">➔</span>
         </a>
@@ -253,7 +256,9 @@
         <div class="section-title">Sistemas Dedicados</div>
         <div class="btn btn-disabled">
             <span>📊 Portal do Cliente (CRM de Risco)</span>
-            <span class="btn-style" style="font-size: 11px; background: #334155; padding: 2px 8px; border-radius: 6px; color: #94a3b8;">EM BREVE</span>
+            <span class="btn-style"
+                style="font-size: 11px; background: #334155; padding: 2px 8px; border-radius: 6px; color: #94a3b8;">EM
+                BREVE</span>
         </div>
 
         <div class="footer">
@@ -266,9 +271,9 @@
         <div class="modal-content">
             <div id="modalTitle" class="modal-title">Checklist</div>
             <div id="modalBody" class="modal-body">Conteúdo</div>
-            <!-- Botão dinâmico que direciona para o seu WhatsApp pedindo o checklist específico -->
-            <a id="modalWaLink" href="#" target="_blank" class="btn btn-primary" style="text-align:center; display:block; margin-bottom:12px;">
-                Receber PDF no WhatsApp
+            <a id="modalWaLink" href="#" target="_blank" class="btn btn-primary"
+                style="text-align:center; display:block; margin-bottom:12px;">
+                Liberar Checklist no WhatsApp
             </a>
             <button class="modal-close" onclick="closeModal()">Fechar</button>
         </div>
@@ -277,36 +282,35 @@
     <script>
         const texts = {
             hamburgueria: {
-                title: "🍔 Raio-X Invisível: Hamburguerias",
-                body: "Descubra se o fantasma do desperdício, as taxas escondidas do iFood e os erros no cálculo do CMV estão engolindo o lucro do seu balcão.",
+                title: "🍔 Gestão 360º: Hamburguerias & Delivery",
+                body: "Descubra se erros no cálculo do CMV (custo do produto), desperdício na chapa, lentidão nas vendas pelo WhatsApp e desorganização financeira estão destruindo o seu lucro líquido.",
                 wa: "Olá Henrique, gostaria de receber o Checklist do Risco Invisível para HAMBURGUERIAS."
             },
             salao: {
-                title: "💇 Raio-X Invisível: Salões de Beleza",
-                body: "Avalie se a armadilha da comissão bruta, o custo invisível por lavatório e o preço da hora parada estão sabotando o caixa do seu salão.",
+                title: "💇 Gestão 360º: Salões de Beleza",
+                body: "Avalie furos ocultos na comissão de profissionais (RH), o custo da hora parada (processos), desperdício de produtos por lavatório e falhas na retenção de clientes.",
                 wa: "Olá Henrique, gostaria de receber o Checklist do Risco Invisível para SALÕES DE BELEZA."
             },
             clinica: {
-                title: "💉 Raio-X Invisível: Clínicas de Estética",
-                body: "Monitore o custo invisível por mililitro de injetáveis, o impacto oculto das locações de aparelhos e os furos na comissão de procedimentos.",
+                title: "💉 Gestão 360º: Clínicas de Estética",
+                body: "Monitore o lucro real por mililitro de injetável (precificação), a falta de processos que te torna escravo da maca, a comissão de procedimentos e a ausência de um pós-venda que gera recorrência.",
                 wa: "Olá Henrique, gostaria de receber o Checklist do Risco Invisível para CLÍNICAS DE ESTÉTICA."
             },
             loja: {
-                title: "👗 Raio-X Invisível: Lojas & Varejo",
-                body: "Monitore o cemitério das araras (estoque parado), a ilusão das liquidações sem cálculo e os furos causados pelas taxas de antecipação de cartão.",
-                wa: "Olá Henrique, gostaria de receber o Checklist do Risco Invisível para LOJAS DE ROUPA."
+                title: "👗 Gestão 360º: Lojas & Varejo",
+                body: "Identifique o ralo do dinheiro parado nas araras (estoque sem giro), falhas no processo de atendimento da equipe, falta de metas diárias de vendas e taxas abusivas de antecipação de cartão.",
+                wa: "Olá Henrique, gostaria de receber o Checklist do Risco Invisível para LOJAS E VAREJO."
             }
         };
 
         function openModal(type) {
             document.getElementById('modalTitle').innerText = texts[type].title;
             document.getElementById('modalBody').innerText = texts[type].body;
-            
-            // Altere o número 5534999999999 abaixo para o seu número real de WhatsApp
-            const basePhone = "5534988307190"; 
+
+            const basePhone = "5534988307190";
             const encodedText = encodeURIComponent(texts[type].wa);
             document.getElementById('modalWaLink').href = `https://wa.me/${basePhone}?text=${encodedText}`;
-            
+
             document.getElementById('infoModal').style.display = 'flex';
         }
 
@@ -314,8 +318,7 @@
             document.getElementById('infoModal').style.display = 'none';
         }
 
-        // Fechar se clicar fora do conteúdo
-        window.onclick = function(event) {
+        window.onclick = function (event) {
             const modal = document.getElementById('infoModal');
             if (event.target == modal) {
                 modal.style.display = "none";
@@ -323,4 +326,5 @@
         }
     </script>
 </body>
+
 </html>
