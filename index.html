@@ -95,6 +95,114 @@
             font-weight: 700;
         }
 
+        /* Quiz / Diagnóstico */
+        .quiz-container {
+            background: #0f172a;
+            border-radius: 14px;
+            padding: 20px 16px;
+            margin-bottom: 16px;
+            border: 1px solid #334155;
+            text-align: left;
+            display: block;
+        }
+
+        .quiz-container.active {
+            display: block;
+        }
+
+        .quiz-question {
+            font-size: 15px;
+            font-weight: 600;
+            color: #f8fafc;
+            margin-bottom: 4px;
+        }
+
+        .quiz-subtitle {
+            font-size: 12px;
+            color: #64748b;
+            margin-bottom: 14px;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .quiz-option {
+            background: #1e293b;
+            border: 1px solid #334155;
+            color: #cbd5e1;
+            padding: 12px 14px;
+            border-radius: 10px;
+            font-size: 14px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quiz-option:hover {
+            background: #293548;
+            border-color: #10b981;
+            color: #f8fafc;
+        }
+
+        .quiz-option.selected {
+            background: #065f46;
+            border-color: #10b981;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .quiz-option .emoji {
+            font-size: 18px;
+        }
+
+        .quiz-result {
+            display: none;
+            background: #0f172a;
+            border: 2px solid #10b981;
+            border-radius: 14px;
+            padding: 20px 16px;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .result-emoji {
+            font-size: 48px;
+            margin-bottom: 8px;
+        }
+
+        .result-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 6px;
+        }
+
+        .result-text {
+            font-size: 14px;
+            color: #94a3b8;
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+
+        .result-badge {
+            display: inline-block;
+            background: #10b981;
+            color: #0f172a;
+            font-weight: 700;
+            font-size: 12px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
         .btn {
             display: flex;
             align-items: center;
@@ -123,6 +231,9 @@
             border: none;
             color: white;
             margin-top: 10px;
+            text-align: center;
+            justify-content: center;
+            gap: 8px;
         }
 
         .btn-primary:hover {
@@ -147,6 +258,46 @@
             font-size: 18px;
         }
 
+        .btn-restart {
+            background: transparent;
+            border: 1px solid #334155;
+            color: #94a3b8;
+            font-size: 13px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+
+        .btn-restart:hover {
+            border-color: #10b981;
+            color: #10b981;
+        }
+
+        .progress-bar {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 16px;
+            justify-content: center;
+        }
+
+        .progress-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #334155;
+            transition: all 0.3s ease;
+        }
+
+        .progress-dot.done {
+            background: #10b981;
+        }
+
+        .progress-dot.current {
+            background: #10b981;
+            box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+        }
+
         .footer {
             margin-top: 28px;
             font-size: 11px;
@@ -154,7 +305,7 @@
             letter-spacing: 0.5px;
         }
 
-        /* Modal/Popup Simples para Interatividade */
+        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -208,6 +359,10 @@
         .modal-close:hover {
             background: #475569;
         }
+
+        .hidden {
+            display: none;
+        }
     </style>
 </head>
 
@@ -216,113 +371,223 @@
     <div class="container">
         <div class="profile-badge">HQ</div>
         <h1>Henrique Queiroz</h1>
-        <div class="subtitle">Gestão & Inteligência de Risco</div>
+        <div class="subtitle">Inteligência de Risco & Decisão</div>
 
         <div class="bio">
-            Estanco o ralo de dinheiro e organizo a operação do seu comércio local. Gestão 360º: Finanças, Processos, Vendas e RH.
-            <span class="bio-slogan">Decisão > Achismo 🚀</span>
+            Sócio externo do seu negócio. Gestão 360º: Financeiro, Processos, Equipe, Estratégia.
+            <span class="bio-slogan">Método Risco & Decisão. Achismo nunca mais. ⚖️</span>
         </div>
 
-        <div class="section-title">Mapear Risco da Sua Empresa</div>
+        <!-- Diagnóstico Interativo -->
+        <div class="section-title">🧠 Diagnóstico de Maturidade de Gestão</div>
 
-        <a class="btn" onclick="openModal('hamburgueria')">
-            <span>🍔 Diagnóstico: Hamburguerias e Delivery</span>
-            <span class="btn-icon">➔</span>
-        </a>
+        <!-- Barra de Progresso -->
+        <div class="progress-bar" id="progressBar">
+            <span class="progress-dot current" id="dot1"></span>
+            <span class="progress-dot" id="dot2"></span>
+            <span class="progress-dot" id="dot3"></span>
+            <span class="progress-dot" id="dot4"></span>
+            <span class="progress-dot" id="dot5"></span>
+        </div>
 
-        <a class="btn" onclick="openModal('salao')">
-            <span>💇 Diagnóstico: Salões de Beleza</span>
-            <span class="btn-icon">➔</span>
-        </a>
+        <!-- Perguntas (uma aparece por vez) -->
+        <div class="quiz-container" id="quizQ1">
+            <div class="quiz-question">1. Você sabe, hoje, quanto dinheiro tem disponível no caixa para os próximos 60 dias?</div>
+            <div class="quiz-subtitle">Incluindo contas a pagar, a receber e imprevistos.</div>
+            <div class="quiz-options">
+                <div class="quiz-option" onclick="selectAnswer(1, 'A', this)"><span class="emoji">🔮</span> Não sei. Vivo no susto e vou pagando conforme entra.</div>
+                <div class="quiz-option" onclick="selectAnswer(1, 'B', this)"><span class="emoji">📋</span> Tenho uma planilha, mas não olho toda semana.</div>
+                <div class="quiz-option" onclick="selectAnswer(1, 'C', this)"><span class="emoji">📊</span> Sim. Projeto o caixa com pelo menos 60 dias de visão clara.</div>
+            </div>
+        </div>
 
-        <a class="btn" onclick="openModal('clinica')">
-            <span>💉 Diagnóstico: Clínicas de Estética</span>
-            <span class="btn-icon">➔</span>
-        </a>
+        <div class="quiz-container hidden" id="quizQ2">
+            <div class="quiz-question">2. Se você se afastar por 15 dias, a receita da empresa se mantém?</div>
+            <div class="quiz-subtitle">Sem ligações, sem WhatsApp, sem apagar incêndios.</div>
+            <div class="quiz-options">
+                <div class="quiz-option" onclick="selectAnswer(2, 'A', this)"><span class="emoji">🚨</span> Despenca. Tudo depende de mim para acontecer.</div>
+                <div class="quiz-option" onclick="selectAnswer(2, 'B', this)"><span class="emoji">🔄</span> Cai um pouco, mas algumas coisas andam sozinhas.</div>
+                <div class="quiz-option" onclick="selectAnswer(2, 'C', this)"><span class="emoji">🚀</span> Mantém. Tenho processos e equipe que operam sem mim.</div>
+            </div>
+        </div>
 
-        <a class="btn" onclick="openModal('loja')">
-            <span>👗 Diagnóstico: Lojas & Varejo</span>
-            <span class="btn-icon">➔</span>
-        </a>
+        <div class="quiz-container hidden" id="quizQ3">
+            <div class="quiz-question">3. Você sabe a margem de lucro real dos seus 3 principais produtos/serviços?</div>
+            <div class="quiz-subtitle">Considerando TODOS os custos, não só o produto ou comissão.</div>
+            <div class="quiz-options">
+                <div class="quiz-option" onclick="selectAnswer(3, 'A', this)"><span class="emoji">🤷</span> Não. Precifico por feeling ou sigo o preço do mercado.</div>
+                <div class="quiz-option" onclick="selectAnswer(3, 'B', this)"><span class="emoji">🧾</span> Sei por alto, mas não calculo cada custo fixo e variável.</div>
+                <div class="quiz-option" onclick="selectAnswer(3, 'C', this)"><span class="emoji">🎯</span> Sim. Cada produto/serviço tem margem líquida calculada e atualizada.</div>
+            </div>
+        </div>
 
-        <div class="section-title">Contato Direto</div>
+        <div class="quiz-container hidden" id="quizQ4">
+            <div class="quiz-question">4. Sua equipe resolve problemas operacionais sem você?</div>
+            <div class="quiz-subtitle">Erro de pedido, reclamação de cliente, atraso de fornecedor.</div>
+            <div class="quiz-options">
+                <div class="quiz-option" onclick="selectAnswer(4, 'A', this)"><span class="emoji">📞</span> Tudo cai no meu colo. Sou o para-raios oficial da empresa.</div>
+                <div class="quiz-option" onclick="selectAnswer(4, 'B', this)"><span class="emoji">🤝</span> Alguns problemas resolvem, mas os "graves" sempre chegam em mim.</div>
+                <div class="quiz-option" onclick="selectAnswer(4, 'C', this)"><span class="emoji">✅</span> Sim. Cada um sabe sua alçada. Eu só entro no estratégico.</div>
+            </div>
+        </div>
 
-        <a href="https://wa.me/5534988307190?text=Olá%20Henrique,%20vi%20seu%20perfil%20e%20gostaria%20de%20agendar%20um%20diagnóstico%20de%20gestão%20completa%20para%20minha%20empresa."
+        <div class="quiz-container hidden" id="quizQ5">
+            <div class="quiz-question">5. Você se sente só nas decisões difíceis do negócio?</div>
+            <div class="quiz-subtitle">Demissões, investimentos, mudanças de rumo. Tem com quem dividir?</div>
+            <div class="quiz-options">
+                <div class="quiz-option" onclick="selectAnswer(5, 'A', this)"><span class="emoji">🏝️</span> Completamente sozinho. O peso está todo nas minhas costas.</div>
+                <div class="quiz-option" onclick="selectAnswer(5, 'B', this)"><span class="emoji">💬</span> Até converso com alguém, mas a decisão final é sempre um chute.</div>
+                <div class="quiz-option" onclick="selectAnswer(5, 'C', this)"><span class="emoji">🧭</span> Tenho método e/ou mentoria. Decido com dados e apoio.</div>
+            </div>
+        </div>
+
+        <!-- Resultado -->
+        <div class="quiz-result" id="quizResult">
+            <div class="result-emoji" id="resultEmoji"></div>
+            <div class="result-badge" id="resultBadge"></div>
+            <div class="result-title" id="resultTitle"></div>
+            <div class="result-text" id="resultText"></div>
+            <a id="resultWaLink" href="#" target="_blank" class="btn btn-primary">
+                <span>💬 Quero sair desse estágio</span>
+            </a>
+            <button class="btn-restart" onclick="restartQuiz()">🔄 Refazer diagnóstico</button>
+        </div>
+
+        <!-- Contato Direto -->
+        <div class="section-title">Fale Comigo</div>
+
+        <a href="https://wa.me/5534988307190?text=Olá%20Henrique,%20vi%20seu%20perfil%20e%20gostaria%20de%20conversar%20sobre%20Gestão%20360º%20para%20minha%20empresa."
             target="_blank" class="btn btn-primary">
-            <span>💬 Agendar Diagnóstico Gratuito</span>
+            <span>💬 Agendar Conversa Estratégica</span>
             <span class="btn-icon">➔</span>
         </a>
 
         <div class="section-title">Sistemas Dedicados</div>
         <div class="btn btn-disabled">
             <span>📊 Portal do Cliente (CRM de Risco)</span>
-            <span class="btn-style"
-                style="font-size: 11px; background: #334155; padding: 2px 8px; border-radius: 6px; color: #94a3b8;">EM
+            <span style="font-size: 11px; background: #334155; padding: 2px 8px; border-radius: 6px; color: #94a3b8;">EM
                 BREVE</span>
         </div>
 
         <div class="footer">
-            PATROCÍNIO - MG | © 2026 RISCO & DECISÃO
-        </div>
-    </div>
-
-    <!-- Estrutura do Modal Interativo -->
-    <div id="infoModal" class="modal">
-        <div class="modal-content">
-            <div id="modalTitle" class="modal-title">Checklist</div>
-            <div id="modalBody" class="modal-body">Conteúdo</div>
-            <a id="modalWaLink" href="#" target="_blank" class="btn btn-primary"
-                style="text-align:center; display:block; margin-bottom:12px;">
-                Liberar Checklist no WhatsApp
-            </a>
-            <button class="modal-close" onclick="closeModal()">Fechar</button>
+           © 2026 RISCO & DECISÃO
         </div>
     </div>
 
     <script>
-        const texts = {
-            hamburgueria: {
-                title: "🍔 Gestão 360º: Hamburguerias & Delivery",
-                body: "Descubra se erros no cálculo do CMV (custo do produto), desperdício na chapa, lentidão nas vendas pelo WhatsApp e desorganização financeira estão destruindo o seu lucro líquido.",
-                wa: "Olá Henrique, gostaria de receber o Checklist do Risco Invisível para HAMBURGUERIAS."
+        // Respostas do usuário
+        const answers = {};
+
+        // Resultados por perfil
+        const profiles = {
+            reativo: {
+                emoji: "🚨",
+                badge: "Modo Reativo",
+                title: "Sua empresa está no comando. Você não.",
+                text: "O negócio te consome. Você apaga incêndios o dia todo, decide no escuro e sente o peso da solidão do dono. O lucro existe, mas some antes do fim do mês. A boa notícia: isso tem solução com método. Eu aplico Gestão 360º exatamente para donos nesse estágio — trazendo previsibilidade financeira, processos que rodam sem você e uma mentoria para você não decidir mais sozinho.",
+                wa: "Olá Henrique, fiz o diagnóstico e minha empresa está no MODO REATIVO. Gostaria de conversar sobre Gestão 360º."
             },
-            salao: {
-                title: "💇 Gestão 360º: Salões de Beleza",
-                body: "Avalie furos ocultos na comissão de profissionais (RH), o custo da hora parada (processos), desperdício de produtos por lavatório e falhas na retenção de clientes.",
-                wa: "Olá Henrique, gostaria de receber o Checklist do Risco Invisível para SALÕES DE BELEZA."
+            tatico: {
+                emoji: "🔄",
+                badge: "Modo Tático",
+                title: "Você tem controle parcial. Mas o crescimento ainda depende de você.",
+                text: "Você já organizou algumas áreas, tem planilhas e processos. Mas quando a empresa cresce, o caixa aperta e você sente que está sempre correndo atrás da máquina. Falta transformar o conhecimento em um sistema que escale sem depender do seu tempo. É exatamente aqui que a Gestão 360º faz a virada — conectando os pontos entre financeiro, equipe e estratégia.",
+                wa: "Olá Henrique, fiz o diagnóstico e minha empresa está no MODO TÁTICO. Quero levar minha gestão para o próximo nível."
             },
-            clinica: {
-                title: "💉 Gestão 360º: Clínicas de Estética",
-                body: "Monitore o lucro real por mililitro de injetável (precificação), a falta de processos que te torna escravo da maca, a comissão de procedimentos e a ausência de um pós-venda que gera recorrência.",
-                wa: "Olá Henrique, gostaria de receber o Checklist do Risco Invisível para CLÍNICAS DE ESTÉTICA."
-            },
-            loja: {
-                title: "👗 Gestão 360º: Lojas & Varejo",
-                body: "Identifique o ralo do dinheiro parado nas araras (estoque sem giro), falhas no processo de atendimento da equipe, falta de metas diárias de vendas e taxas abusivas de antecipação de cartão.",
-                wa: "Olá Henrique, gostaria de receber o Checklist do Risco Invisível para LOJAS E VAREJO."
+            previsivel: {
+                emoji: "🚀",
+                badge: "Modo Previsível",
+                title: "Sua gestão é sólida. Está pronto para escalar com inteligência.",
+                text: "Você tem controle financeiro, processos definidos e equipe autônoma. Talvez a sua dor agora seja outra: como crescer sem perder margem, como se afastar da operação de vez, ou como preparar a empresa para um novo patamar. Eu atuo como mentor estratégico para donos nesse estágio, ajudando a refinar decisões de alto impacto.",
+                wa: "Olá Henrique, fiz o diagnóstico e estou no MODO PREVISÍVEL. Quero escalar com método e mentoria."
             }
         };
 
-        function openModal(type) {
-            document.getElementById('modalTitle').innerText = texts[type].title;
-            document.getElementById('modalBody').innerText = texts[type].body;
+        function selectAnswer(question, option, element) {
+            // Remove seleção anterior na mesma pergunta
+            const options = element.parentElement.querySelectorAll('.quiz-option');
+            options.forEach(opt => opt.classList.remove('selected'));
+            element.classList.add('selected');
+
+            // Salva resposta
+            answers[question] = option;
+
+            // Atualiza barra de progresso
+            document.getElementById(`dot${question}`).classList.add('done');
+            document.getElementById(`dot${question}`).classList.remove('current');
+            if (question < 5) {
+                document.getElementById(`dot${question + 1}`).classList.add('current');
+            }
+
+            // Delay para dar feedback visual, depois avança
+            setTimeout(() => {
+                document.getElementById(`quizQ${question}`).classList.add('hidden');
+
+                if (question < 5) {
+                    document.getElementById(`quizQ${question + 1}`).classList.remove('hidden');
+                    document.getElementById(`quizQ${question + 1}`).classList.add('active');
+                } else {
+                    showResult();
+                }
+            }, 300);
+        }
+
+        function showResult() {
+            // Conta respostas
+            let countA = 0;
+            let countB = 0;
+            let countC = 0;
+            for (let i = 1; i <= 5; i++) {
+                if (answers[i] === 'A') countA++;
+                if (answers[i] === 'B') countB++;
+                if (answers[i] === 'C') countC++;
+            }
+
+            // Define perfil
+            let profile;
+            if (countA >= 3) {
+                profile = profiles.reativo;
+            } else if (countB >= 3 || (countA <= 2 && countC <= 2)) {
+                profile = profiles.tatico;
+            } else {
+                profile = profiles.previsivel;
+            }
+
+            // Exibe resultado
+            document.getElementById('resultEmoji').innerText = profile.emoji;
+            document.getElementById('resultBadge').innerText = profile.badge;
+            document.getElementById('resultTitle').innerText = profile.title;
+            document.getElementById('resultText').innerText = profile.text;
 
             const basePhone = "5534988307190";
-            const encodedText = encodeURIComponent(texts[type].wa);
-            document.getElementById('modalWaLink').href = `https://wa.me/${basePhone}?text=${encodedText}`;
+            const encodedText = encodeURIComponent(profile.wa);
+            document.getElementById('resultWaLink').href = `https://wa.me/${basePhone}?text=${encodedText}`;
 
-            document.getElementById('infoModal').style.display = 'flex';
+            // Esconde progresso e pergunta atual
+            document.getElementById('progressBar').classList.add('hidden');
+            document.getElementById('quizQ5').classList.add('hidden');
+            document.getElementById('quizResult').style.display = 'block';
         }
 
-        function closeModal() {
-            document.getElementById('infoModal').style.display = 'none';
-        }
-
-        window.onclick = function (event) {
-            const modal = document.getElementById('infoModal');
-            if (event.target == modal) {
-                modal.style.display = "none";
+        function restartQuiz() {
+            // Limpa respostas
+            for (let i = 1; i <= 5; i++) {
+                delete answers[i];
             }
+
+            // Reseta progresso
+            for (let i = 1; i <= 5; i++) {
+                document.getElementById(`dot${i}`).classList.remove('done', 'current');
+            }
+            document.getElementById('dot1').classList.add('current');
+
+            // Reseta seleções visuais
+            document.querySelectorAll('.quiz-option').forEach(opt => opt.classList.remove('selected'));
+
+            // Esconde resultado, mostra primeira pergunta
+            document.getElementById('quizResult').style.display = 'none';
+            document.getElementById('progressBar').classList.remove('hidden');
+            document.getElementById('quizQ1').classList.remove('hidden');
         }
     </script>
 </body>
